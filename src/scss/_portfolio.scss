@@ -33,6 +33,11 @@
       }
       .project-name {
         font-size: 18px;
+        a {
+          font-size: 18px;
+          color: $white;
+          text-decoration:none;
+        }
       }
     }
   }
@@ -52,6 +57,9 @@
         }
         .project-name {
           font-size: 22px;
+          a {
+            font-size: 22px;
+          }
         }
       }
     }
