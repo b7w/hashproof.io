@@ -28,7 +28,7 @@ def buildStage() {
 
 def deployStage() {
     stage("Deploy") {
-        withEnv(["XDG_CACHE_HOME=tmp", "ANSIBLE_HOST_KEY_CHECKING=False"]) {
+        withEnv(["XDG_CACHE_HOME=tmp"]) {
             sh("mkdir -p tmp")
             sh("pip3 install python-dateutil ansible boto3")
         }
