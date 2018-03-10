@@ -1,10 +1,14 @@
 node() {
+    def isMaster = env.BRANCH_NAME == "master"
+
     checkoutStage()
     docker.image("node:8").inside {
         buildStage()
     }
-    docker.image("python:3.6-slim").inside {
-        deployStage()
+    if (isMaster) {
+        docker.image("python:3.6-slim").inside {
+            deployStage()
+        }
     }
 }
 
