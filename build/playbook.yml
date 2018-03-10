@@ -10,5 +10,5 @@
         aws_secret_key: '{{ aws_secret_key }}'
         bucket: hashproof.io
         file_root: ../target
-        remove: yes
+        delete: yes
         region: eu-central-1

@@ -19,10 +19,9 @@ def checkoutStage() {
 def buildStage() {
     stage("Build") {
         sh("rm -rf target")
-        dir("src") {
-            sh("npm install")
-            sh("gulp")
-        }
+        sh("cd src && npm install -g gulp")
+        sh("cd src && npm install")
+        sh("cd src && gulp")
     }
 }
 
@@ -33,11 +32,9 @@ def deployStage() {
             sh("mkdir -p tmp")
             sh("pip3 install python-dateutil ansible boto3")
         }
-        dir("build") {
-            def vault = file(credentialsId: "ansible_vault", variable: "VAULT")
-            withCredentials([vault]) {
-                sh("ansible-playbook playbook.yml --extra-vars=@secrets.yml --vault-password-file=$VAULT")
-            }
+        def vault = file(credentialsId: "ansible_vault", variable: "VAULT")
+        withCredentials([vault]) {
+            sh("ansible-playbook build/playbook.yml --extra-vars=@build/secrets.yml --vault-password-file=$VAULT")
         }
     }
 }
