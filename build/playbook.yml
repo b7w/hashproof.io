@@ -6,7 +6,9 @@
   tasks:
     - name: Sync
       s3_sync:
-        profile: hashproof.io
+        aws_access_key: '{{ aws_access_key }}'
+        aws_secret_key: '{{ aws_secret_key }}'
         bucket: hashproof.io
-        file_root: src
+        file_root: ../target
+        delete: yes
         region: eu-central-1
