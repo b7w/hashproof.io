@@ -18,9 +18,11 @@ def checkoutStage() {
 
 def buildStage() {
     stage("Build") {
-         dir("src") {
+        sh("rm -rf target")
+        dir("src") {
+            sh("npm install")
             sh("gulp")
-         }
+        }
     }
 }
 
