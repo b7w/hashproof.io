@@ -35,6 +35,7 @@ def deployStage() {
         withEnv(["XDG_CACHE_HOME=tmp"]) {
             sh("mkdir -p tmp")
             sh("pip3 install python-dateutil ansible boto3")
+            sh("ls tmp")
         }
         def vault = file(credentialsId: "ansible_vault", variable: "VAULT")
         withCredentials([vault]) {
